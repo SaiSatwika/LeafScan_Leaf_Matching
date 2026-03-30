@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: leaf_matching
+Version: 0.1
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: opencv-python
+Requires-Dist: scikit-learn
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: joblib
+Requires-Dist: Pillow
+Dynamic: requires-dist
