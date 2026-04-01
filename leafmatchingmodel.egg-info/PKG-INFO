@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: leafmatchingmodel
+Version: 0.1.0
+Summary: Leaf Matching Model for Defoliation Estimation
+Author: SaiSatwika Mahankali, Kevyn Angueira
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: opencv-python
+Requires-Dist: scikit-learn
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: Pillow
+Requires-Dist: joblib
+Requires-Dist: requests
+Requires-Dist: xgboost
