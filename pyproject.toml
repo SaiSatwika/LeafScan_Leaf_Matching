@@ -1,0 +1,24 @@
+[project]
+name = "leafmatchingmodel"
+version = "0.1.0"
+description = "Leaf Matching Model for Defoliation Estimation"
+authors = [{ name="SaiSatwika Mahankali, Kevyn Angueira" }]
+dependencies = [
+    "numpy",
+    "pandas",
+    "opencv-python",
+    "scikit-learn",
+    "torch",
+    "torchvision",
+    "Pillow",
+    "joblib",
+    "requests",
+    "xgboost"
+]
+
+[tool.setuptools.package-data]
+"leafmatchingmodel.files" = ["*"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

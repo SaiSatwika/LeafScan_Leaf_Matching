@@ -1,0 +1,59 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.pyo
+
+# -----------------------------
+# Virtual environments
+# -----------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# -----------------------------
+# Build / packaging
+# -----------------------------
+build/
+dist/
+*.egg-info/
+*.egg
+
+# -----------------------------
+# Testing / coverage
+# -----------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+
+# -----------------------------
+# IDE / OS junk
+# -----------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Logs / temp
+# -----------------------------
+*.log
+tmp/
+cache/
+
+# -----------------------------
+# Optional: LARGE FILES
+# -----------------------------
+# Uncomment if you DON'T want to track model artifacts
+# *.pkl
+# *.npy
+# *.csv
+
+# -----------------------------
+# Jupyter
+# -----------------------------
+.ipynb_checkpoints/
