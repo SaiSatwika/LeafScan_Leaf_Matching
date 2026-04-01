@@ -36,8 +36,8 @@ class LeafMatchingModel:
         if mask is None:
             raise ValueError("Leaf extraction failed")
         
-        cv2.imshow("Mask", mask)
-        cv2.waitKey(0)
+        #cv2.imshow("Mask", mask)
+        #cv2.waitKey(0)
 
         geom = compute_geometry(mask)
         if geom is None:
@@ -59,6 +59,7 @@ class LeafMatchingModel:
             dists
         )
 
+        """
         print("FEATURES:", features)
 
         print("embeddings shape:", self.healthy_embeddings.shape)
@@ -73,6 +74,7 @@ class LeafMatchingModel:
 
         print("DIST MEAN:", dists.mean())
         print("DIST STD:", dists.std())
+        """
 
 
         return {
