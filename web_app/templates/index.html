@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LeafScan Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fa;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .leaf-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .leaf-id {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-top: 10px;
+        }
+
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        img {
+            width: 140px;
+            margin: 5px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 600px) {
+            img {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>🌿 LeafScan Matching Dashboard</h2>
+
+{% for item in results %}
+
+<div class="leaf-card">
+
+    <div class="leaf-id">Leaf ID: {{ item.leaf_id }}</div>
+
+    <div class="section">
+        <strong>Input Leaf</strong><br>
+        <img src="/image?path={{ item.reconstruction }}">
+    </div>
+
+    <div class="section">
+        <strong>Top 5 Matches</strong>
+        <div class="images">
+            {% for img in item.matches %}
+                <img src="/image?path={{ img }}">
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

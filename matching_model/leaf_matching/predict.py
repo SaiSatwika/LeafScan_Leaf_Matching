@@ -61,5 +61,5 @@ def run_prediction(image, model, healthy_embeddings, df_geom):
 
     confidence = float(max(0, 100 * (1 - float(dists.mean()))))
     confidence = round(confidence, 2)
-
-    return round(pred, 2), confidence
+    matched_ids = list(matched["leaf_id"].values)
+    return round(pred, 2), confidence, matched_ids

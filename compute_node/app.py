@@ -81,7 +81,8 @@ def predict():
         image_bytes = np.frombuffer(file.read(), np.uint8)
         image = cv2.imdecode(image_bytes, cv2.IMREAD_COLOR)
 
-        pred, confidence = run_prediction(
+        # ✅ UPDATED: get matches also
+        pred, confidence, matched_ids = run_prediction(
             image,
             model,
             healthy_embeddings,
@@ -89,8 +90,9 @@ def predict():
         )
 
         return jsonify({
-            "prediction": pred,
-            "confidence": confidence
+            "prediction": float(pred),        # ✅ fix JSON issue
+            "confidence": float(confidence),  # ✅ fix JSON issue
+            "matches": matched_ids            # ✅ new field
         })
 
     except Exception as e:
@@ -108,4 +110,4 @@ def refresh():
 # -----------------------------
 
 if __name__ == "__main__":
-    app.run(port=5000)
+    app.run(host="0.0.0.0", port=5000)

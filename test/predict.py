@@ -23,9 +23,19 @@ with open(args.image, "rb") as f:
 # OUTPUT
 # -----------------------------
 
-print("Status Code:", response.status_code)
+print("\nStatus Code:", response.status_code)
 
 try:
-    print("Response:", response.json())
+    data = response.json()
+
+    print("\n Prediction:", data.get("prediction"), "%")
+    print(" Confidence:", data.get("confidence"), "%")
+
+    matches = data.get("matches", [])
+
+    print("\n Top 5 Matches:")
+    for i, m in enumerate(matches, 1):
+        print(f"   {i}. {m}")
+
 except:
-    print("Raw Response:", response.text)
+    print("\nRaw Response:", response.text)
