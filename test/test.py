@@ -5,7 +5,7 @@ from leafmatchingmodel import LeafMatchingModel
 model = LeafMatchingModel()
 
 # Read image (BGR format)
-image = cv2.imread("test/reconstruction.jpg")
+image = cv2.imread("test/reconstruction_video_1772901909383.jpg")
 
 if image is None:
     raise ValueError("Failed to load image")
