@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaf Review Queue</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fa;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        img {
+            width: 150px;
+            border-radius: 8px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .keep {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .discard {
+            background: #f44336;
+            color: white;
+        }
+
+        .update-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Leaf Review Queue</h2>
+
+<div class="grid">
+
+{% for img in images %}
+
+<div class="card" id="{{ img.name }}">
+
+    <img src="/image?path={{ img.path }}"><br>
+
+    <button class="keep" onclick="keep('{{ img.name }}')">Keep</button>
+    <button class="discard" onclick="discard('{{ img.name }}')">Discard</button>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<button class="update-btn">Update</button>
+
+<script>
+function keep(name) {
+    fetch("/keep", {
+        method: "POST",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: "file=" + name
+    }).then(() => {
+        document.getElementById(name).remove();
+    });
+}
+
+function discard(name) {
+    fetch("/discard", {
+        method: "POST",
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: "file=" + name
+    }).then(() => {
+        document.getElementById(name).remove();
+    });
+}
+</script>
+
+</body>
+</html>
