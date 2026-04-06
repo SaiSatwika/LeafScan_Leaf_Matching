@@ -57,5 +57,6 @@ class LeafMatchingModel:
 
         return {
             "prediction": pred,
-            "confidence": confidence
+            "confidence": confidence,
+            "matches": idx
         }
