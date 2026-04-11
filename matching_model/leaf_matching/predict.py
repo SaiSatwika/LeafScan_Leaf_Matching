@@ -57,9 +57,25 @@ def run_prediction(image, model, healthy_embeddings, df_geom):
     # -----------------------------
     # STEP 6: Prediction
     # -----------------------------
-    pred = float(np.clip(model.predict(features)[0], 0, 100))
+    pred = float(model.predict(features)[0])
 
+    # 🔥 SIGN FIX (your requirement)
+    if geom["area"] > h_area:
+        pred = -abs(pred)
+    else:
+        pred = abs(pred)
+
+    pred = round(pred, 2)
+
+    # -----------------------------
+    # CONFIDENCE
+    # -----------------------------
     confidence = float(max(0, 100 * (1 - float(dists.mean()))))
     confidence = round(confidence, 2)
+
+    # -----------------------------
+    # MATCH IDS
+    # -----------------------------
     matched_ids = list(matched["leaf_id"].values)
-    return round(pred, 2), confidence, matched_ids
+
+    return pred, confidence, matched_ids
