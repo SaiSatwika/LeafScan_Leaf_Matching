@@ -10,7 +10,7 @@ from tqdm import tqdm
 # PATHS (UPDATED)
 # -------------------------------------------------
 
-DEFOLIATED_DIR = Path(r"D:\updated dataset\Defoliated_reconstruction")
+DEFOLIATED_DIR = Path(r"D:\Final_dataset\Defoliated")
 
 OUTPUT_DIR = Path.cwd() / "outputs" / "embeddings"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

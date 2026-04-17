@@ -5,9 +5,15 @@ import numpy as np
 import pandas as pd
 import joblib
 from pathlib import Path
+import sys
 
-# ✅ IMPORT YOUR PACKAGE
-from leaf_matching.predict import run_prediction
+# -----------------------------
+# FIX IMPORT PATH (IMPORTANT)
+# -----------------------------
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+# UPDATED IMPORT
+from matching_model.leaf_matching.predict import run_prediction
 
 # -----------------------------
 # CONFIG
@@ -39,19 +45,24 @@ def download_file(endpoint, save_path):
 # -----------------------------
 
 def load_all():
-    global model, healthy_embeddings, df_geom
+    global model, healthy_embeddings, df_geom, healthy_ids
 
     print("⬇️ Downloading from Data Node...")
 
     download_file("model", CACHE_DIR / "model.pkl")
     download_file("healthy-embeddings", CACHE_DIR / "emb.npy")
     download_file("geometry", CACHE_DIR / "geom.csv")
+    download_file("healthy-ids", CACHE_DIR / "healthy_leaf_ids.txt")  # ✅ NEW
 
     print("📦 Loading...")
 
     model = joblib.load(CACHE_DIR / "model.pkl")
     healthy_embeddings = np.load(CACHE_DIR / "emb.npy")
     df_geom = pd.read_csv(CACHE_DIR / "geom.csv")
+
+    # ✅ LOAD IDS
+    with open(CACHE_DIR / "healthy_leaf_ids.txt", "r") as f:
+        healthy_ids = [line.strip() for line in f]
 
     print("✅ Ready")
 
@@ -81,18 +92,19 @@ def predict():
         image_bytes = np.frombuffer(file.read(), np.uint8)
         image = cv2.imdecode(image_bytes, cv2.IMREAD_COLOR)
 
-        # ✅ UPDATED: get matches also
+        # ✅ UPDATED CALL
         pred, confidence, matched_ids = run_prediction(
             image,
             model,
             healthy_embeddings,
-            df_geom
+            df_geom,
+            healthy_ids   # ✅ IMPORTANT
         )
 
         return jsonify({
-            "prediction": float(pred),        # ✅ fix JSON issue
-            "confidence": float(confidence),  # ✅ fix JSON issue
-            "matches": matched_ids            # ✅ new field
+            "prediction": float(pred),
+            "confidence": float(confidence),
+            "matches": matched_ids
         })
 
     except Exception as e:

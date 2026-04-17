@@ -8,8 +8,8 @@ from core.extract_leaf import extract_leaf
 # PATHS
 # -------------------------------------------------
 
-HEALTHY_DIR = Path(r"D:\updated dataset\Healthy_reconstruction")
-DEFOLIATED_DIR = Path(r"D:\updated dataset\Defoliated_reconstruction")
+HEALTHY_DIR = Path(r"D:\Final_dataset\Healthy")
+DEFOLIATED_DIR = Path(r"D:\Final_dataset\Defoliated")
 
 OUT_PATH = Path("outputs/features")
 OUT_PATH.mkdir(parents=True, exist_ok=True)

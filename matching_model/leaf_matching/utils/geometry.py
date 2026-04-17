@@ -21,10 +21,12 @@ def compute_geometry(mask):
     compactness = float(area / (perimeter ** 2)) if perimeter > 0 else 0.0
 
     pts = cnt.reshape(-1, 2).astype(np.float32)
-    _, eigvecs, eigvals = cv2.PCACompute2(pts, mean=None)
+    _, _, eigvals = cv2.PCACompute2(pts, mean=None)
 
     major_axis = float(2 * np.sqrt(eigvals[0][0]))
     minor_axis = float(2 * np.sqrt(eigvals[1][0]))
+
+    aspect_ratio = float(major_axis / (minor_axis + 1e-6))
 
     return {
         "area": area,
@@ -32,5 +34,6 @@ def compute_geometry(mask):
         "convexity": convexity,
         "compactness": compactness,
         "major_axis": major_axis,
-        "minor_axis": minor_axis
+        "minor_axis": minor_axis,
+        "aspect_ratio": aspect_ratio
     }

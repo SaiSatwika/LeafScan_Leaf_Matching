@@ -10,7 +10,7 @@ from tqdm import tqdm
 # PATHS (UPDATED)
 # -------------------------------------------------
 
-HEALTHY_DIR = Path(r"D:\updated dataset\Healthy_reconstruction")
+HEALTHY_DIR = Path(r"D:\Final_dataset\Healthy")
 
 OUTPUT_DIR = Path.cwd() / "outputs" / "embeddings"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
