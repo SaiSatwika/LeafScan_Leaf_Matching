@@ -73,10 +73,10 @@ class LeafMatchingModel:
         print("EMB mean:", emb.mean(), "std:", emb.std())
 
         print("DIST MEAN:", dists.mean())
-        print("DIST STD:", dists.std())
+        print("DIST
+        STD:", dists.std())
         """
-
-
+        
         return {
             "prediction": pred,
             "confidence": confidence,
