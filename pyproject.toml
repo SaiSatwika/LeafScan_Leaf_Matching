@@ -16,8 +16,12 @@ dependencies = [
     "xgboost"
 ]
 
+[tool.setuptools.packages.find]
+include = ["leafmatchingmodel*", "newmatch*"]
+
 [tool.setuptools.package-data]
 "leafmatchingmodel.files" = ["*"]
+"newmatch.files" = ["*"]
 
 [build-system]
 requires = ["setuptools", "wheel"]
